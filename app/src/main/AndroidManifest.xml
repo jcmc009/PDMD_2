@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/Theme.Tarea2_ManjonCarrascoJoseCarlos"
+            tools:ignore="MissingClass" />
     </application>
 
 </manifest>
