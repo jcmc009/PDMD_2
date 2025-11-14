@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Tarea2_ManjonCarrascoJoseCarlos</string>
+    <string name="app_name">Pikmin</string>
+    <string name="about_title">Acerca de...</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="informacion_acerca_de">Aplicación desarrollada por jcmc. Version 1.0</string>
+    <string name="menu_about">Acerca de...</string>
+    <string name="about_message">Aplicación desarrollada por José Carlos Manjón Carrasco. Versión 1.0</string>
+    <string name="ajustes_title">Ajustes</string>
+
 </resources>
