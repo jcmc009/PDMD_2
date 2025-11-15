@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +32,15 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // Comprobamos si es la primera vez que se crea (para que no salga al girar la pantalla)
+        if (savedInstanceState == null) {
+            // Buscamos la vista raíz (tu ConstraintLayout con id 'main')
+            val mainLayout = findViewById<View>(R.id.main)
+
+            // Creamos y mostramos el Snackbar anclado a esa vista
+            Snackbar.make(mainLayout, R.string.initial_message, Snackbar.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,10 +53,8 @@ class MainActivity : AppCompatActivity() {
         // El 'return' se aplica al resultado de toda la expresión 'when'
         return when (item.itemId) {
             R.id.menu_settings -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(
-                        R.id.fragment_container,
-                        SettingsFragment()
+                supportFragmentManager.beginTransaction().replace(
+                        R.id.fragment_container, SettingsFragment()
                     ) // Reemplaza lo que haya en el contenedor
                     .addToBackStack(null) // Permite volver atrás al pulsar el botón de retroceso
                     .commit()
@@ -55,11 +64,8 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_about -> {
 
-                AlertDialog.Builder(this)
-                    .setTitle(R.string.about_title)
-                    .setMessage(R.string.about_message)
-                    .setPositiveButton("ok", null)
-                    .show()
+                AlertDialog.Builder(this).setTitle(R.string.about_title)
+                    .setMessage(R.string.about_message).setPositiveButton("ok", null).show()
 
                 true
             }
@@ -68,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     // Esto conecta la flecha de la Toolbar con la acción de "ir atrás" del sistema
     override fun onSupportNavigateUp(): Boolean {
         onBackPressedDispatcher.onBackPressed()

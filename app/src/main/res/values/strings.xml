@@ -6,5 +6,6 @@
     <string name="menu_about">Acerca de...</string>
     <string name="about_message">Aplicación desarrollada por José Carlos Manjón Carrasco. Versión 1.0</string>
     <string name="ajustes_title">Ajustes</string>
+    <string name="initial_message">Bienvenido a Pikmin illustrator!</string>
 
 </resources>
