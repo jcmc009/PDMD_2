@@ -13,18 +13,22 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-//        supportActionBar?.title = "Pikmin illustrator"
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -32,15 +36,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Comprobamos si es la primera vez que se crea (para que no salga al girar la pantalla)
+        // Snackbar de bienvenida (Correcto)
         if (savedInstanceState == null) {
-            // Buscamos la vista raíz (tu ConstraintLayout con id 'main')
             val mainLayout = findViewById<View>(R.id.main)
-
-            // Creamos y mostramos el Snackbar anclado a esa vista
             Snackbar.make(mainLayout, R.string.initial_message, Snackbar.LENGTH_SHORT).show()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_settings -> {
                 supportFragmentManager.beginTransaction().replace(
-                        R.id.fragment_container, SettingsFragment()
-                    ) // Reemplaza lo que haya en el contenedor
+                    R.id.fragment_container, SettingsFragment()
+                ) // Reemplaza lo que haya en el contenedor
                     .addToBackStack(null) // Permite volver atrás al pulsar el botón de retroceso
                     .commit()
 
